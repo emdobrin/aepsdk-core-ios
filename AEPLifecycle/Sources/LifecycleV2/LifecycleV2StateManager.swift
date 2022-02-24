@@ -23,7 +23,7 @@ class LifecycleV2StateManager {
         case PAUSE = "pause"
     }
 
-    private let dispatchQueue = DispatchQueue(label: "\(LifecycleConstants.EXTENSION_NAME).stateManager")
+    private let dispatchQueue = DispatchQueue(label: "\(LifecycleConstants.EXTENSION_NAME).stateManager", qos: .background)
     private var scheduledPauseTask: DispatchWorkItem?
     private var cancellablePauseCallback: ((Bool) -> Void)?
     private var currentState: State?
