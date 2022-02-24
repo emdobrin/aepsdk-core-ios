@@ -91,6 +91,7 @@ class LifecycleV2StateManager {
             self?.currentState = State.PAUSE
             self?.scheduledPauseTask = nil
             self?.cancellablePauseCallback = nil
+            Log.trace(label: LifecycleConstants.LOG_TAG, "\(Self.SELF_LOG_TAG) - Pause timer ran.")
             callback(true)
         }
 
