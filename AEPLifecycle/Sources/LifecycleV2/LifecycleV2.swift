@@ -89,7 +89,7 @@ class LifecycleV2 {
     /// - Parameter pauseDate: Date at which the pause event occurred
     func pause(pauseDate: Date) {
         stateManager.update(state: .PAUSE) { [weak self] (updated: Bool) in
-            Log.trace(label: LifecycleV2Constants.LOG_TAG, "pause - callback invoked.")
+            Log.trace(label: "LifecycleV2", "pause - callback invoked.")
             guard let self = self else { return }
             guard updated else { return }
 
@@ -97,7 +97,7 @@ class LifecycleV2 {
             self.dataStoreCache.setAppPauseDate(pauseDate)
             // get start date from cache/presistence
             let startDate = self.dataStoreCache.getAppStartDate()
-            Log.trace(label: LifecycleV2Constants.LOG_TAG, "pause - pause data updated, dispatching application.close event.")
+            Log.trace(label: "LifecycleV2", "pause - pause data updated, dispatching application.close event.")
 
             if let closeXDM = self.xdmMetricsBuilder.buildAppCloseXDMData(launchDate: startDate, closeDate: pauseDate, fallbackCloseDate: pauseDate, isCloseUnknown: false) {
                 // dispatch application close event with xdm data
